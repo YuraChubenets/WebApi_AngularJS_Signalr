@@ -10,17 +10,12 @@
     <meta name="description" content="">
     <meta name="author" content=""> 
     <title>Starter Template for Bootstrap</title>
-
-    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/Style.css" rel="stylesheet" />
-    <script src="Scripts/jquery-1.9.1.min.js"></script>
-    <script src="Scripts/angular.min.js"></script>
-    <script src="App/productController.js"></script>
+    
 
 </head>
 
-<body>
+<body ng-app="restApp">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -43,48 +38,51 @@
         </div>
     </nav>
 
-    <div class="container" ng-app="restApp" ng-controller="productController" ng-cloak>
+    <div class="container"  ng-controller="productController" >
+    <br />        
+        <div ng-show="!isProgress">
+            <table class="table" >
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr ng-repeat="item in result">
+                    <td>{{item.Name}}</td>
+                    <td>{{item.Price}}</td>
+                    <td>{{item.Quantity}}</td>
+                    <td>
+                        <a href="#" ng-click="del(item.id)">Delete</a>
+                        <a href="#" ng-click="selectEdit(item.id)">Edit</a>
+                    </td>
+                </tr>
+            </table>
 
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-        </tr>
-        <tr ng-repeat="item in result">
-            <td>{{item.Name}}</td>
-            <td>{{item.Price}}</td>
-            <td>{{item.Quantity}}</td>
-            <td>
-                <a href="#" ng-click="del(item.id)">Delete</a>
-                <a href="#" ng-click="selectEdit(item.id)">Edit</a>               
-            </td>
-        </tr>
-    </table>
-
-
-    <table>
-        <tr>
-            <td>Name</td>
-            <td><input type="text" ng-model="name" /></td>           
-        </tr>
-        <tr>
-            <td>Price</td>   
-            <td><input type="text" ng-model="price" /></td>              
-        </tr>
-        <tr>
-            <td>Quantity</td>
-            <td><input type="text" ng-model="quantity" /></td>     
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>
-                <input type="button" value="Add" ng-click="add()"/>
-                <input type="button" value="Save" ng-click="edit()" />
-            </td>
-        </tr>
-    </table>
-
+              <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" ng-model="name" /></td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td><input type="text" ng-model="price" /></td>
+                </tr>
+                <tr>
+                    <td>Quantity</td>
+                    <td><input type="text" ng-model="quantity" /></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="button" value="Add" ng-click="add()" />
+                        <input type="button" value="Save" ng-click="edit()" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div ng-if="isProgress">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
         <div class="starter-template">
             <h1>Bootstrap starter template</h1>
             <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
@@ -95,6 +93,15 @@
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
- 
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/angular-material.min.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="App/productController.js"></script>    
+    <script src="Scripts/angular-animate/angular-animate.min.js"></script>
+    <script src="Scripts/angular-aria/angular-aria.min.js"></script>
+    <script src="Scripts/angular-material/angular-material.js"></script>
 </body>
 </html>
